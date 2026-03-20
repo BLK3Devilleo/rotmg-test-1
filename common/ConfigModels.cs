@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
@@ -22,7 +23,27 @@ namespace common
 
         public static ServerConfig ReadJson(string json)
         {
-            return JsonConvert.DeserializeObject<ServerConfig>(json);
+            var config = JsonConvert.DeserializeObject<ServerConfig>(json);
+            config.ApplyEnvironmentVariables();
+            return config;
+        }
+
+        private void ApplyEnvironmentVariables()
+        {
+            var redisHost = Environment.GetEnvironmentVariable("REDIS_HOST");
+            if (!string.IsNullOrEmpty(redisHost)) dbInfo.host = redisHost;
+
+            var redisPort = Environment.GetEnvironmentVariable("REDIS_PORT");
+            if (!string.IsNullOrEmpty(redisPort) && int.TryParse(redisPort, out int port)) dbInfo.port = port;
+
+            var redisAuth = Environment.GetEnvironmentVariable("REDIS_PASS");
+            if (!string.IsNullOrEmpty(redisAuth)) dbInfo.auth = redisAuth;
+
+            var redisIndex = Environment.GetEnvironmentVariable("REDIS_INDEX");
+            if (!string.IsNullOrEmpty(redisIndex) && int.TryParse(redisIndex, out int index)) dbInfo.index = index;
+
+            var resFolder = Environment.GetEnvironmentVariable("RESOURCE_FOLDER");
+            if (!string.IsNullOrEmpty(resFolder)) serverSettings.resourceFolder = resFolder;
         }
     }
 

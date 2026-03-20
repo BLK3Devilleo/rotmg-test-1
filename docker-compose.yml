@@ -1,0 +1,34 @@
+services:
+  app-engine:
+    build: .
+    environment:
+      - SERVICE_TYPE=server
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - RESOURCE_FOLDER=/usr/src/app/resources
+    volumes:
+      - ./resources:/usr/src/app/resources
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+
+  world-server:
+    build: .
+    environment:
+      - SERVICE_TYPE=wServer
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - RESOURCE_FOLDER=/usr/src/app/resources
+    volumes:
+      - ./resources:/usr/src/app/resources
+    ports:
+      - "2050:2050"
+      - "2051:2051"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
