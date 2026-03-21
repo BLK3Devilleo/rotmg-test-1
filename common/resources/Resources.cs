@@ -101,7 +101,7 @@ namespace common.resources
                 new ReadOnlyDictionary<string, byte[]>(
                     languages = new Dictionary<string, byte[]>());
 
-            var basePath = Path.Combine(Utils.GetAssemblyDirectory(), dir);
+            var basePath = dir;
             foreach (string lang in new String[] { "en" })
             {
                 var zipBytes = Utils.Deflate(
