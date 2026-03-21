@@ -24,6 +24,7 @@ namespace common.resources
         public IDictionary<string, byte[]> WebFiles { get; private set; }
         public IDictionary<string, byte[]> Languages { get; private set; }
         public IDictionary<string, byte[]> Textures { get; private set; }
+        public byte[] RawTextures { get; private set; }
         public byte[] ZippedTextures { get; private set; }
         public IList<string> MusicNames { get; private set; }
         public Ranks[] RoleRanks { get; private set; }
@@ -165,7 +166,8 @@ namespace common.resources
                     wtr.Write(tex.Value);
                 }
 
-                ZippedTextures = Utils.Deflate(ms.ToArray());
+                RawTextures = ms.ToArray();
+                ZippedTextures = Utils.Deflate(RawTextures);
             }
         }
 

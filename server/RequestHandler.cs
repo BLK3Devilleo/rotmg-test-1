@@ -19,7 +19,7 @@ namespace server
 
         protected Database Database => Program.Database;
         
-        internal void Write(RequestContext req, string val, bool zip = true)
+        internal void Write(RequestContext req, string val, bool zip = false)
         {
             if (zip)
             {
@@ -36,7 +36,7 @@ namespace server
             Write(req.Response(val), "text/plain", zipped);
         }
 
-        internal void WriteXml(RequestContext req, string val, bool zip = true)
+        internal void WriteXml(RequestContext req, string val, bool zip = false)
         {
             if (zip)
             {
