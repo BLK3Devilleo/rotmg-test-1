@@ -48,6 +48,9 @@ namespace common
             var serverBind = Environment.GetEnvironmentVariable("SERVER_BIND");
             if (!string.IsNullOrEmpty(serverBind)) serverInfo.bindAddress = serverBind;
 
+            var serverAddr = Environment.GetEnvironmentVariable("SERVER_ADDR");
+            if (!string.IsNullOrEmpty(serverAddr)) serverInfo.address = serverAddr;
+
             var serverPort = Environment.GetEnvironmentVariable("SERVER_PORT");
             if (!string.IsNullOrEmpty(serverPort) && int.TryParse(serverPort, out int sPort)) serverInfo.port = sPort;
         }

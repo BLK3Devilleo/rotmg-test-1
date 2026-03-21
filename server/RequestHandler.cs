@@ -65,9 +65,6 @@ namespace server
 
         protected void Write(Response r, string type, bool zip = false)
         {
-            if (zip)
-                r.Headers["Content-Encoding"] = "deflate";
-            
             r.Headers["Content-Type"] = type;
             r.Send();
         }
