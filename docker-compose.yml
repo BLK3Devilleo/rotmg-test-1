@@ -5,11 +5,9 @@ services:
       - SERVICE_TYPE=server
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - RESOURCE_FOLDER=/usr/src/app/resources
-    volumes:
-      - ./resources:/usr/src/app/resources
+      - RESOURCE_FOLDER=resources
     ports:
-      - "8080:8080"
+      - "8888:8080"
     depends_on:
       - redis
 
@@ -19,9 +17,7 @@ services:
       - SERVICE_TYPE=wServer
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - RESOURCE_FOLDER=/usr/src/app/resources
-    volumes:
-      - ./resources:/usr/src/app/resources
+      - RESOURCE_FOLDER=resources
     ports:
       - "2050:2050"
       - "2051:2051"
