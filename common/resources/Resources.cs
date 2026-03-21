@@ -30,10 +30,22 @@ namespace common.resources
 
         public Resources(string resourcePath, bool wServer = false)
         {
+            resourcePath = Path.GetFullPath(resourcePath);
+            Log.InfoFormat("Initializing resources from: {0}", resourcePath);
             ResourcePath = resourcePath;
-            Settings = new AppSettings(resourcePath + "/data/init.xml");
-            GameData = new XmlData(resourcePath + "/xmls");
-            FilterList = File.ReadAllText(resourcePath + "/data/filterList.txt")
+
+            var initPath = Path.Combine(resourcePath, "data", "init.xml");
+            if (!File.Exists(initPath))
+            {
+                Log.FatalFormat("CRITICAL: File '{0}' not found!", initPath);
+                throw new FileNotFoundException("Could not find init.xml at " + initPath);
+            }
+
+            Settings = new AppSettings(initPath);
+            GameData = new XmlData(Path.Combine(resourcePath, "xmls"));
+            
+            var filterPath = Path.Combine(resourcePath, "data", "filterList.txt");
+            FilterList = File.ReadAllText(filterPath)
                 .Split(new string[] { Environment.NewLine }, StringSplitOptions.None)
                 .Select(l => new Regex(l, RegexOptions.IgnoreCase)).ToArray();
 
