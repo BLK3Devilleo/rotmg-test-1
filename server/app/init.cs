@@ -35,7 +35,7 @@ namespace server.app
 
         public override void HandleRequest(RequestContext context, NameValueCollection query)
         {
-            WriteXml(context, _data, false);
+            WriteXml(context, _data);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace server
 
         protected Database Database => Program.Database;
         
-        internal void Write(RequestContext req, string val, bool zip = false)
+        internal void Write(RequestContext req, string val, bool zip = true)
         {
             if (zip)
             {
@@ -31,12 +31,12 @@ namespace server
             Write(req.Response(val), "text/plain");
         }
 
-        internal void Write(RequestContext req, byte[] val, bool zipped = false)
+        internal void Write(RequestContext req, byte[] val, bool zipped = true)
         {
-            Write(req.Response(val), "text/plain", zipped);
+            Write(req.Response(val), "application/octet-stream", zipped);
         }
 
-        internal void WriteXml(RequestContext req, string val, bool zip = false)
+        internal void WriteXml(RequestContext req, string val, bool zip = true)
         {
             if (zip)
             {
@@ -72,6 +72,7 @@ namespace server
             r.Send();
         }
     }
+
 
     internal static class RequestHandlers
     {
