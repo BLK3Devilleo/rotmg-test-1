@@ -19,7 +19,7 @@ namespace server
 
         protected Database Database => Program.Database;
         
-        internal void Write(RequestContext req, string val, bool zip = true)
+        protected void Write(RequestContext req, string val, bool zip = true)
         {
             if (zip)
             {
@@ -31,12 +31,12 @@ namespace server
             Write(req.Response(val), "text/plain");
         }
 
-        internal void Write(RequestContext req, byte[] val, bool zipped = true)
+        protected void Write(RequestContext req, byte[] val, bool zip = true)
         {
-            Write(req.Response(val), "application/octet-stream", zipped);
+            Write(req.Response(val), "application/octet-stream", zip);
         }
 
-        internal void WriteXml(RequestContext req, string val, bool zip = true)
+        protected void WriteXml(RequestContext req, string val, bool zip = true)
         {
             if (zip)
             {
@@ -48,24 +48,24 @@ namespace server
             Write(req.Response(val), "application/xml");
         }
 
-        internal void WriteXml(RequestContext req, byte[] val, bool zipped)
+        protected void WriteXml(RequestContext req, byte[] val, bool zip = true)
         {
-            Write(req.Response(val), "application/xml", zipped);
+            Write(req.Response(val), "application/xml", zip);
         }
 
-        internal void WriteImg(RequestContext req, byte[] val)
+        protected void WriteImg(RequestContext req, byte[] val)
         {
             Write(req.Response(val), "image/png");
         }
 
-        internal void WriteSnd(RequestContext req, byte[] val)
+        protected void WriteSnd(RequestContext req, byte[] val)
         {
             Write(req.Response(val), "*/*");
         }
 
-        internal void Write(Response r, string type, bool zipped = false)
+        protected void Write(Response r, string type, bool zip = false)
         {
-            if (zipped)
+            if (zip)
                 r.Headers["Content-Encoding"] = "deflate";
             
             r.Headers["Content-Type"] = type;
