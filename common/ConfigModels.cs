@@ -44,6 +44,12 @@ namespace common
 
             var resFolder = Environment.GetEnvironmentVariable("RESOURCE_FOLDER");
             if (!string.IsNullOrEmpty(resFolder)) serverSettings.resourceFolder = resFolder;
+
+            var serverBind = Environment.GetEnvironmentVariable("SERVER_BIND");
+            if (!string.IsNullOrEmpty(serverBind)) serverInfo.bindAddress = serverBind;
+
+            var serverPort = Environment.GetEnvironmentVariable("SERVER_PORT");
+            if (!string.IsNullOrEmpty(serverPort) && int.TryParse(serverPort, out int sPort)) serverInfo.port = sPort;
         }
     }
 
