@@ -1,5 +1,6 @@
 ﻿using System.Collections.Specialized;
 using System.IO;
+using System.Text;
 using System.Xml.Linq;
 using Anna.Request;
 using common;
@@ -29,12 +30,12 @@ namespace server.app
                 }
             }
             
-            _data = Utils.Deflate(init.ToString());
+            _data = Encoding.UTF8.GetBytes(init.ToString());
         }
 
         public override void HandleRequest(RequestContext context, NameValueCollection query)
         {
-            WriteXml(context, _data, true);
+            WriteXml(context, _data, false);
         }
     }
 }

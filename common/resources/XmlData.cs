@@ -20,6 +20,7 @@ namespace common.resources
         public IList<string[]> UsedRemoteTextures { get; private set; }
 
         public byte[] ZippedXmls { get; private set; }
+        public byte[] RawXmls { get; private set; }
 
         Dictionary<ushort, XElement> type2elem_obj;
         Dictionary<ushort, string> type2id_obj;
@@ -217,7 +218,8 @@ namespace common.resources
                 foreach (var xml in GameXmls)
                     wtr.Write32UTF(xml);
 
-                return Utils.Deflate(ms.ToArray());
+                RawXmls = ms.ToArray();
+                return Utils.Deflate(RawXmls);
             }
         }
 

@@ -47,10 +47,10 @@ namespace server.@char
                 
                 var list = CharList.FromDb(Database, acc);
                 list.Servers = GetServerList();
-                WriteXml(context, list.ToXml().ToString());
+                WriteXml(context, list.ToXml().ToString(), false);
             }
             else
-                Write(context, "<Error>" + status.GetInfo() + "</Error>");
+                Write(context, "<Error>" + status.GetInfo() + "</Error>", false);
         }
     }
 }

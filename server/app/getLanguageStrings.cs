@@ -11,7 +11,7 @@ namespace server.app
             if (lang == null || !Program.Resources.Languages.ContainsKey(lang))
                 lang = "en";
 
-            Write(context, Program.Resources.Languages[lang], true);
+            Write(context, Program.Resources.Languages[lang], false);
         }
     }
 }

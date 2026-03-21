@@ -104,10 +104,8 @@ namespace common.resources
             var basePath = dir;
             foreach (string lang in new String[] { "en" })
             {
-                var zipBytes = Utils.Deflate(
-                    File.ReadAllBytes(Path.Combine(basePath, lang + ".txt")));
-
-                languages.Add(lang, zipBytes);
+                var bytes = File.ReadAllBytes(Path.Combine(basePath, lang + ".txt"));
+                languages.Add(lang, bytes);
             }
         }
 
