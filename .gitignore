@@ -238,3 +238,7 @@ _Pvt_Extensions
 
 # Behaviors
 wServer/logic/db/*.cs
+
+# Internal communication
+rotmg\ comunicacion\ interna/
+
