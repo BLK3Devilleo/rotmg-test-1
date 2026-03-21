@@ -7,7 +7,11 @@ namespace server.app
     {
         public override void HandleRequest(RequestContext context, NameValueCollection query)
         {
-            Write(context, Program.Resources.Languages[query["languageType"]], true);
+            var lang = query["languageType"];
+            if (lang == null || !Program.Resources.Languages.ContainsKey(lang))
+                lang = "en";
+
+            Write(context, Program.Resources.Languages[lang], true);
         }
     }
 }
