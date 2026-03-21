@@ -641,7 +641,7 @@ namespace server
         {
             return
                 new XElement("Chars",
-                    new XElement("Version", Program.Resources.Settings.version),
+                    new XElement("Version", Program.Resources.Settings.Version),
                     new XAttribute("nextCharId", NextCharId),
                     new XAttribute("maxNumChars", MaxNumChars),
                     Characters.Select(x => x.ToXml()),

@@ -5,7 +5,7 @@ services:
       - SERVICE_TYPE=server
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - RESOURCE_FOLDER=/usr/src/app/source/resources
+      - RESOURCE_FOLDER=/usr/src/app/build/resources
       - SERVER_BIND=*
       - SERVER_PORT=8080
       - SERVER_ADDR=149.102.140.118
@@ -20,7 +20,7 @@ services:
       - SERVICE_TYPE=wServer
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - RESOURCE_FOLDER=/usr/src/app/source/resources
+      - RESOURCE_FOLDER=/usr/src/app/build/resources
       - SERVER_BIND=0.0.0.0
       - SERVER_PORT=2050
       - SERVER_ADDR=149.102.140.118

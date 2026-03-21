@@ -24,6 +24,7 @@ namespace common.resources
         public int[] PotionPurchaseCosts { get; private set; }
         public bool DisableRegistration { get; private set; }
         public int MysteryBoxRefresh { get; private set; }
+        public string Version { get; private set; }
         public int MaxPetCount { get; private set; }
         public NewAccounts Accounts { get; private set; }
         public NewCharacters Characters { get; private set; }
@@ -46,6 +47,8 @@ namespace common.resources
             PotionPurchaseCostCooldown = GetIntValue("PotionPurchaseCostCooldown");
             DisableRegistration = GetBoolValue("DisableRegist");
             MysteryBoxRefresh = GetIntValue("MysteryBoxRefresh");
+            Version = GetStringValue("Version");
+            if (string.IsNullOrEmpty(Version)) Version = "27.7.X13";
             MaxPetCount = GetIntValue("MaxPetCount");
             Accounts = new NewAccounts(elem.Element("NewAccounts"));
             Characters = new NewCharacters(elem.Element("NewCharacters"));
