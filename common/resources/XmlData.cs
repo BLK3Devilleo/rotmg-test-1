@@ -163,7 +163,7 @@ namespace common.resources
 
             addition = new XElement("ExtData");
 
-            string basePath = Utils.GetBasePath(path);
+            string basePath = Path.IsPathRooted(path) ? path : Utils.GetBasePath(path);
             
             // load additional xmls into GameXmls string array
             LoadXmls(basePath, "*.xml");

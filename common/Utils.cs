@@ -64,6 +64,8 @@ namespace common
         }
         public static string GetBasePath(string folder)
         {
+            if (Path.IsPathRooted(folder))
+                return folder;
             return Path.Combine(GetAssemblyDirectory(), folder);
         }
         public static string GetAssemblyDirectory()
