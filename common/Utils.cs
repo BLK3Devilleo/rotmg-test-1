@@ -85,7 +85,7 @@ namespace common
 
             using (var dst = new MemoryStream())
             {
-                using (var df = new DeflateStream(dst, CompressionMode.Compress))
+                using (var df = new ZlibStream(dst, CompressionMode.Compress))
                     df.Write(src, 0, src.Length);
                 
                 zipBytes = dst.ToArray();
